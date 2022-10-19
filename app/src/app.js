@@ -9,6 +9,13 @@ function App (props) {
 
     const [test, setTest] = useState(Data)
 
+    const handleToggle = (id) => {
+        let mappy = test.map(task => {
+          return (task.id == id ? { ...task, complete: !task.complete } : { ...task});
+        });
+        setTest(mappy);
+      }
+
     
 
     // const [text, setText] = useState('');

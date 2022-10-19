@@ -1,7 +1,9 @@
-function Entry (props) {
+import App from "../app";
+
+function Entry ({test}) {
     return (
-        <div>
-            {props.test.task}
+        <div className={test.complete ? "text-decoration-line-through" : ""}>
+            {test.task}
         </div>
     );
 }
