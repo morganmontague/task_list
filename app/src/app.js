@@ -1,8 +1,15 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Input from "./componets/input";
+import {useState} from 'react'
+import Data from "./data";
+import List from "./componets/list";
 
-function App () {
+function App (props) {
+
+    const [test, setTest] = useState(Data)
+
+    
 
     // const [text, setText] = useState('');
     // const handleChange = (e) => {
@@ -14,6 +21,7 @@ function App () {
         <>
             <h1 className="badge bg-primary">checking if bootstap and react are working</h1>    
             <Input />
+            <List test={test}/>
         </>
     )
 }
