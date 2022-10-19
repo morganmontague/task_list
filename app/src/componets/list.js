@@ -3,12 +3,12 @@ import Entry from "./entry";
 
  
  
-const List = ({test}) => {
+const List = ({test, handleToggle}) => {
    return (
        <div>
            {test.map(test => {
                return (
-                   <Entry test={test} />
+                   <Entry key={test.key} test={test} handleToggle={handleToggle}/>
                )
            })}
        </div>
