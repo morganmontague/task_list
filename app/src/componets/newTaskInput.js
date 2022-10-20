@@ -13,10 +13,9 @@ import Header from './header';
             setValue("");
         }
         
-        console.log(value)
         return (
             <>
-                            <input onSubmit={handleSubmit}
+                    <input onSubmit={handleSubmit}
                     type="text"
                     className="input"
                     value={value}

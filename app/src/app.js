@@ -14,15 +14,17 @@ import NewTaskInput from "./componets/newTaskInput";
       const [tasks, setTasks] = useState(data)
 
       function addTask  (task) {
-        const newTasks = [...tasks, {key: tasks.length, task, completed: false, }];
+        const newTasks = [...tasks, {key: tasks.length+1, task, complete: true, id: tasks.length +1 }];
         setTasks(newTasks);
     };
-      // let key = test.key
 
-    function handleToggle (task, index) {
+
+    function handleToggle (e, task, index) {
       const updateTasks = [...tasks]
-      updateTasks[index].complete = true
+      (task.key === index, 
+      {...task, complete: !task.complete });
       setTasks(updateTasks)
+      console.log(e.target)
     }
 
   //   const newTodos = [...todos];
@@ -43,18 +45,6 @@ import NewTaskInput from "./componets/newTaskInput";
       //     //   <List tasks={tasks} handleToggle={handleToggle}/>
       //     // )
       //   }
-      //   console.log(handleToggle)
-        // function Bye (test) {
-        //   let byebyeList = test.filter(
-        //     (test) => test.complete === true
-        //   );
-        //   let newList = byebyeList.map(byebyeList) (
-        //     <div>
-        //       {test.task}
-        //     </div>
-        //   )
-        // }
-  
 
   
       return(
@@ -62,11 +52,10 @@ import NewTaskInput from "./componets/newTaskInput";
               <h1 className="badge bg-primary">checking if bootstap and react are working</h1>    
               <Input />
               <List tasks={tasks} handleToggle={handleToggle}/>
-              <button onClick={handleToggle}>Try</button>
-              <div>
+            
                     <NewTaskInput addTask={addTask}  />
                     {console.log(tasks)}
-              </div>
+              
           </>
       )
   }

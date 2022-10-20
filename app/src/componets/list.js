@@ -4,21 +4,20 @@ import TaskMaker from "./taskMaker";
  
 const List = ({tasks, handleToggle}) => {
    return (
-       <div>
-        {tasks.map((task, index) => (
+       <div onClick={handleToggle}>
+    {tasks.map((task, index) => (
     <TaskMaker
+    handleToggle={handleToggle}
     task={task}
     index={index}
     key={index}
-    />))}
+    />)
+    )
+    }
        </div>
    );
 };
 
 export default List;
-{/* {tasks.map(tasks => {
-    return (
-        <Entry key={tasks.key} tasks={tasks} handleToggle={handleToggle}/>
-    )
-})} */}
+
 
