@@ -1,4 +1,4 @@
-function HeaderTop () {
+function Header () {
     return (        
     <div>
         <h1>Task List:</h1>
@@ -6,4 +6,4 @@ function HeaderTop () {
     )
 }
 
-export default HeaderTop
+export default Header

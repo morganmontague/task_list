@@ -1,13 +1,14 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import Input from "./componets/input";
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import data from "./data";
 import List from "./componets/list";
 import Bye from "./componets/Bye";
 import NewTaskInput from "./componets/newTaskInput";
 import HeaderTop from "./componets/header";
 import ButtonMaker from "./componets/ButtonMaker";
+import './app.css'
+import Form1 from "./test";
 
    
   function App (props) {
@@ -17,6 +18,7 @@ import ButtonMaker from "./componets/ButtonMaker";
       function addTask  (task) {
         const newTasks = [...tasks, {key: tasks.length+1, task, complete: false, id: tasks.length +1 }];
         setTasks(newTasks);
+        {localStorage.setItem('test', JSON.stringify(tasks))}
     };
     let bahh = tasks.filter(task => task.complete == true).length
     let sheep = tasks.filter(task => task.complete == false).length
@@ -29,8 +31,18 @@ import ButtonMaker from "./componets/ButtonMaker";
       console.log(e.target)
     }
 
+    useEffect(() => {
+      {localStorage.setItem('test2', JSON.stringify(tasks))}
+    }
+    )
+    window.localStorage.setItem('test4', JSON.stringify(tasks))
+    const [name, setName] = useState(() => {
+      const saved = localStorage.getItem("test4")
+      const initialValue = JSON.parse(saved)
+      return initialValue || ""
+    }
+    )
 
-  
       return(
           <>
               <h1 className="badge bg-primary">checking if bootstap and react are working</h1>
@@ -43,6 +55,9 @@ import ButtonMaker from "./componets/ButtonMaker";
               <ButtonMaker text={('All')} />
               <ButtonMaker text={('Active')} />
               <ButtonMaker text={('Completed')}/>
+              <br></br>
+              <ButtonMaker text={('Remove Completed')} />
+              <Form1 />
             
 
               

@@ -8,6 +8,7 @@ import Header from './header';
         const handleSubmit = e => {
             e.preventDefault();
             if (value === '') return;
+            if (value == ' ') return;
             
             addTask(value);
             setValue("");
@@ -19,7 +20,7 @@ import Header from './header';
                     type="text"
                     className="input"
                     value={value}
-                    placeholder="Meh"
+                    placeholder="Insert Tasks Here..."
                     onChange={e => setValue(e.target.value)}
                     />
             <button onClick={handleSubmit}>Meh</button>
