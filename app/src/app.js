@@ -6,7 +6,8 @@ import data from "./data";
 import List from "./componets/list";
 import Bye from "./componets/Bye";
 import NewTaskInput from "./componets/newTaskInput";
-
+import HeaderTop from "./componets/header";
+import ButtonMaker from "./componets/ButtonMaker";
 
    
   function App (props) {
@@ -14,10 +15,11 @@ import NewTaskInput from "./componets/newTaskInput";
       const [tasks, setTasks] = useState(data)
 
       function addTask  (task) {
-        const newTasks = [...tasks, {key: tasks.length+1, task, complete: true, id: tasks.length +1 }];
+        const newTasks = [...tasks, {key: tasks.length+1, task, complete: false, id: tasks.length +1 }];
         setTasks(newTasks);
     };
-
+    let bahh = tasks.filter(task => task.complete == true).length
+    let sheep = tasks.filter(task => task.complete == false).length
 
     function handleToggle (e, task, index) {
       const updateTasks = [...tasks]
@@ -27,34 +29,22 @@ import NewTaskInput from "./componets/newTaskInput";
       console.log(e.target)
     }
 
-  //   const newTodos = [...todos];
-  //   newTodos[index].isDone = true;
-  //   setTodos(newTodos);
-  // };
-      // function handleToggle (key) {
-      //     const mappy = tasks.map(task => {
-      //       return (task.key === key ? 
-      //         {...task, complete: !task.complete } : 
-      //         { ...task});
-      //       // This is saying if there is the right key it should take the the
-      //     });
-      //     setTasks(mappy);
-      //     // console.log(tasks)
-      //     // console.log(mappy)
-      //     // return(
-      //     //   <List tasks={tasks} handleToggle={handleToggle}/>
-      //     // )
-      //   }
 
   
       return(
           <>
-              <h1 className="badge bg-primary">checking if bootstap and react are working</h1>    
-              <Input />
+              <h1 className="badge bg-primary">checking if bootstap and react are working</h1>
+              <HeaderTop />  
+              <NewTaskInput addTask={addTask}  />
+              {console.log(tasks)}
               <List tasks={tasks} handleToggle={handleToggle}/>
+              <div>The amount of Tasks completed is {bahh}</div>
+              <div>The amount of Tasks to do is {sheep} </div>
+              <ButtonMaker text={('All')} />
+              <ButtonMaker text={('Active')} />
+              <ButtonMaker text={('Completed')}/>
             
-                    <NewTaskInput addTask={addTask}  />
-                    {console.log(tasks)}
+
               
           </>
       )

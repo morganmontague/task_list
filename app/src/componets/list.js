@@ -4,14 +4,15 @@ import TaskMaker from "./taskMaker";
  
 const List = ({tasks, handleToggle}) => {
    return (
-       <div onClick={handleToggle}>
+       <div >
     {tasks.map((task, index) => (
-    <TaskMaker
+   <TaskMaker
     handleToggle={handleToggle}
     task={task}
     index={index}
-    key={index}
-    />)
+    key={index}/>
+    
+    )
     )
     }
        </div>
