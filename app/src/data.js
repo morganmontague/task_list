@@ -1,18 +1,16 @@
-let data ={ ([{
+let data =[{
         "key": 1,
         "task": "Blahh",
-        "status": true
+        "complete": true
       }, {
         "key": 2,
         "task": "DBoo",
-        "status": true
+        "complete": true
       }, {
         "key": 3,
         "task": "Moo",
-        "status": false
+        "complete": false
       }, 
-    ])
-     
-}
+    ]
 
 export default data

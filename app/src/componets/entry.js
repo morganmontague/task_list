@@ -1,11 +1,11 @@
 import App from "../app";
 
-function Entry ({test, handleToggle}) {
+function Entry ({tasks, handleToggle}) {
     return (
-        <div onClick={handleToggle} className={test.status ? "text-decoration-line-through" : ""} id={test.key} >
+        <div onClick={handleToggle} className={tasks.complete ? "text-decoration-line-through" : ""} id={tasks.key} >
            
-            {/* <input className="form-check-input" type="checkbox" value="" id={test.key} onChange={handleToggle}></input> */}
-            {test.task}
+            {/* <input className="form-check-input" type="checkbox" value="" id={tasks.key} onChange={handleToggle}></input> */}
+            {tasks.task}
             
         </div>
     );
@@ -24,4 +24,6 @@ export default Entry
 
 
 
-// onClick={handleToggle} className={test.status ? "text-decoration-line-through" : ""} id={test.key} key={test.key}
+
+
+// onClick={handleToggle} className={test.complete ? "text-decoration-line-through" : ""} id={test.key} key={test.key}
