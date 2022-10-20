@@ -2,7 +2,7 @@ import {useState} from 'react'
 import Header from './header';
 
 
-    function NewTaskInput({ addTask }) {
+    function NewTaskInput(props) {
         const [value, setValue] = useState("");
     
         const handleSubmit = e => {
@@ -10,7 +10,8 @@ import Header from './header';
             if (value === '') return;
             if (value == ' ') return;
             
-            addTask(value);
+            props.addTask(value);
+            
             setValue("");
         }
         
