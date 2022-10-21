@@ -2,7 +2,7 @@ import Entry from "./entry";
 import TaskMaker from "./taskMaker";
 
  
-const List = ({tasks, handleToggle, deletion}) => {
+const List = ({tasks, handleToggle, deletion, className } ) => {
    return (
    <div >
     {tasks.map((task, index) => (

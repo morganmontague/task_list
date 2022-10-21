@@ -8,11 +8,9 @@ import HeaderTop from "./componets/header";
 import ButtonMaker from "./componets/ButtonMaker";
 import "./app.css";
 
-function App(props) {
+function App() {
   
   const [tasks, setTasks] = useState(data);
-  // let boo = localStorage.getItem("test");
-  // useState = boo !== null ? JSON.parse(boo) : console.log("broke");
 
 
   function addTask(task) {
@@ -47,19 +45,22 @@ function App(props) {
   }
 
   function completed() {
-    let completedTasks = tasks.filter((task) => task.complete == true);
+    let arch = localStorage.getItem("test");
+    const changeArch = arch !== null ? JSON.parse(arch) : console.log("broke");
+    let completedTasks = changeArch.filter((task) => task.complete == true);
     setTasks(completedTasks);
   }
 
   function toDo() {
-    let activeTasks = tasks.filter((task) => task.complete == false);
+    let arch = localStorage.getItem("test");
+    const changeArch = arch !== null ? JSON.parse(arch) : console.log("broke");
+    let activeTasks = changeArch.filter((task) => task.complete == false);
     setTasks(activeTasks);
   }
 
   function boggle() {
     let arch = localStorage.getItem("test");
     const changeArch = arch !== null ? JSON.parse(arch) : console.log("broke");
-    console.log("Before the for loop", changeArch);
     for (let i = 0; i < changeArch.length; i++) {
       if (changeArch[i].complete == true) {
         changeArch[i].archive = true;
@@ -84,7 +85,6 @@ function App(props) {
 
   function finishAll (){
     let selectAll = [... tasks]
-    console.log(selectAll)
     for (let i = 0; i < selectAll.length; i++) {
       selectAll[i].complete = true
     }
@@ -96,7 +96,6 @@ function App(props) {
   function allTasks() {
     let recall = localStorage.getItem("test");
     const re = recall !== null ? JSON.parse(recall) : console.log("broke");
-    console.log(re);
     setTasks(re);
   }
 
