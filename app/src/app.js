@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import data from "./data";
 import List from "./componets/list";
 import NewTaskInput from "./componets/newTaskInput";
@@ -10,8 +10,14 @@ import "./app.css";
 
 function App() {
   
-  const [tasks, setTasks] = useState(data);
+  
+  const [tasks, setTasks] = useState(() => {
+    return JSON.parse(window.localStorage.getItem('tasks')) || []
+});
+const [status, setStatus] = useState("active");
 
+useEffect (() => {localStorage.setItem('tasks', JSON.stringify(tasks));
+}, [tasks]);
 
   function addTask(task) {
     const newTasks = [
@@ -27,9 +33,10 @@ function App() {
     setTasks(newTasks);
     localStorage.setItem("test", JSON.stringify(newTasks));
   }
-
+// shows how many tasks have been completed
   let bahh = tasks.filter((task) => task.complete == true).length;
   let sheep = tasks.filter((task) => task.complete == false).length;
+  //shows how many tasks still need to done
 
   function handleToggle(e, index) {
     const updateTasks = [...tasks];
@@ -71,17 +78,18 @@ function App() {
     localStorage.setItem("test", JSON.stringify(newThing));
   }
 
-  // function deletion() {
-  //   let del = localStorage.getItem("test");
-  //   const changeDel = del !== null ? JSON.parse(del) : console.log("broke");
-  //   console.log("Before the for loop", changeDel);
-  //   changeDel.archiveNum = 57
-  //   let newThing = changeDel.filter((task) => task.archive == false);
-  //   console.log(changeDel);
-  //   console.log(newThing);
-  //   setTasks(newThing);
-  //   localStorage.setItem("test", JSON.stringify(newThing));
-  // }
+  function deletion(e) {
+    console.log(e.target)
+    // let del = localStorage.getItem("test");
+    // const changeDel = del !== null ? JSON.parse(del) : console.log("broke");
+    // console.log("Before the for loop", changeDel);
+    // changeDel.archiveNum = 57
+    // let newThing = changeDel.filter((task) => task.archive == false);
+    // console.log(changeDel);
+    // console.log(newThing);
+    // setTasks(newThing);
+    // localStorage.setItem("test", JSON.stringify(newThing));
+  }
 
   function finishAll (){
     let selectAll = [... tasks]
@@ -95,7 +103,7 @@ function App() {
 
   function allTasks() {
     let recall = localStorage.getItem("test");
-    const re = recall !== null ? JSON.parse(recall) : console.log("broke");
+    const re = recall !== null ? JSON.parse(recall) : [];
     setTasks(re);
   }
 
@@ -106,8 +114,8 @@ function App() {
 
           <HeaderTop />
           <NewTaskInput addTask={addTask} />
-          {<List tasks={tasks} handleToggle={handleToggle} />}
-          {/* deletion={deletion} */}
+          {<List tasks={tasks} handleToggle={handleToggle} deletion={deletion}/>}
+          
           <br></br>
           <div>The amount of Tasks completed is {bahh}</div>
           <div>The amount of Tasks to do is {sheep} </div>
