@@ -9,15 +9,14 @@ import ButtonMaker from "./componets/ButtonMaker";
 import "./app.css";
 
 function App() {
-  
-  
   const [tasks, setTasks] = useState(() => {
-    return JSON.parse(window.localStorage.getItem('tasks')) || []
-});
-const [status, setStatus] = useState("active");
+    return JSON.parse(window.localStorage.getItem("tasks")) || [];
+  });
+  const [status, setStatus] = useState("active");
 
-useEffect (() => {localStorage.setItem('tasks', JSON.stringify(tasks));
-}, [tasks]);
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function addTask(task) {
     const newTasks = [
@@ -31,9 +30,9 @@ useEffect (() => {localStorage.setItem('tasks', JSON.stringify(tasks));
       },
     ];
     setTasks(newTasks);
-    localStorage.setItem("test", JSON.stringify(newTasks));
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
   }
-// shows how many tasks have been completed
+  // shows how many tasks have been completed
   let bahh = tasks.filter((task) => task.complete == true).length;
   let sheep = tasks.filter((task) => task.complete == false).length;
   //shows how many tasks still need to done
@@ -48,25 +47,25 @@ useEffect (() => {localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
     setTasks(updateTasks);
-    localStorage.setItem("test", JSON.stringify(updateTasks));
+    localStorage.setItem("tasks", JSON.stringify(updateTasks));
   }
 
   function completed() {
-    let arch = localStorage.getItem("test");
+    let arch = localStorage.getItem("tasks");
     const changeArch = arch !== null ? JSON.parse(arch) : console.log("broke");
     let completedTasks = changeArch.filter((task) => task.complete == true);
     setTasks(completedTasks);
   }
 
   function toDo() {
-    let arch = localStorage.getItem("test");
+    let arch = localStorage.getItem("tasks");
     const changeArch = arch !== null ? JSON.parse(arch) : console.log("broke");
     let activeTasks = changeArch.filter((task) => task.complete == false);
     setTasks(activeTasks);
   }
 
   function boggle() {
-    let arch = localStorage.getItem("test");
+    let arch = localStorage.getItem("tasks");
     const changeArch = arch !== null ? JSON.parse(arch) : console.log("broke");
     for (let i = 0; i < changeArch.length; i++) {
       if (changeArch[i].complete == true) {
@@ -75,12 +74,22 @@ useEffect (() => {localStorage.setItem('tasks', JSON.stringify(tasks));
     }
     let newThing = changeArch.filter((task) => task.archive == false);
     setTasks(newThing);
-    localStorage.setItem("test", JSON.stringify(newThing));
+    localStorage.setItem("tasks", JSON.stringify(newThing));
   }
 
   function deletion(e) {
-    console.log(e.target)
-    // let del = localStorage.getItem("test");
+    console.log(e.target);
+    let deletion = [...tasks]
+    console.log(tasks)
+    // if(deletion.index == deletion.index) {
+    //   for (let i = 0; i < deletion.length; i++) {
+    //     // console.log(deletedTask)
+    //     const deletedTask = deletion.filter((task) => task[i].key == !task[i].key);
+    //     setTasks(deletedTask)
+      }
+      
+    
+    // let del = localStorage.getItem("tasks");
     // const changeDel = del !== null ? JSON.parse(del) : console.log("broke");
     // console.log("Before the for loop", changeDel);
     // changeDel.archiveNum = 57
@@ -88,21 +97,20 @@ useEffect (() => {localStorage.setItem('tasks', JSON.stringify(tasks));
     // console.log(changeDel);
     // console.log(newThing);
     // setTasks(newThing);
-    // localStorage.setItem("test", JSON.stringify(newThing));
-  }
+    // localStorage.setItem("tasks", JSON.stringify(newThing));
+  
 
-  function finishAll (){
-    let selectAll = [... tasks]
+  function finishAll() {
+    let selectAll = [...tasks];
     for (let i = 0; i < selectAll.length; i++) {
-      selectAll[i].complete = true
+      selectAll[i].complete = true;
     }
-    setTasks(selectAll)
-    localStorage.setItem("test", JSON.stringify(selectAll));
+    setTasks(selectAll);
+    localStorage.setItem("tasks", JSON.stringify(selectAll));
   }
-
 
   function allTasks() {
-    let recall = localStorage.getItem("test");
+    let recall = localStorage.getItem("tasks");
     const re = recall !== null ? JSON.parse(recall) : [];
     setTasks(re);
   }
@@ -111,11 +119,16 @@ useEffect (() => {localStorage.setItem('tasks', JSON.stringify(tasks));
     <>
       <div className="container">
         <div>
-
           <HeaderTop />
           <NewTaskInput addTask={addTask} />
-          {<List tasks={tasks} handleToggle={handleToggle} deletion={deletion}/>}
-          
+          {
+            <List
+              tasks={tasks}
+              handleToggle={handleToggle}
+              deletion={deletion}
+            />
+          }
+
           <br></br>
           <div>The amount of Tasks completed is {bahh}</div>
           <div>The amount of Tasks to do is {sheep} </div>
@@ -140,7 +153,7 @@ useEffect (() => {localStorage.setItem('tasks', JSON.stringify(tasks));
             handleToggle={boggle}
             className={"btn bg-danger"}
           />
-                    <ButtonMaker
+          <ButtonMaker
             text={"Select All"}
             handleToggle={finishAll}
             className={"btn bg-danger"}
