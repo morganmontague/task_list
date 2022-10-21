@@ -43,20 +43,16 @@ function App(props) {
     }
 
     setTasks(updateTasks);
-    console.log(e);
-    console.log("works");
     localStorage.setItem("test", JSON.stringify(updateTasks));
   }
 
   function completed() {
     let completedTasks = tasks.filter((task) => task.complete == true);
-    console.log(completedTasks);
     setTasks(completedTasks);
   }
 
   function toDo() {
     let activeTasks = tasks.filter((task) => task.complete == false);
-    console.log(activeTasks);
     setTasks(activeTasks);
   }
 
@@ -70,8 +66,6 @@ function App(props) {
       }
     }
     let newThing = changeArch.filter((task) => task.archive == false);
-    console.log(changeArch);
-    console.log(newThing);
     setTasks(newThing);
     localStorage.setItem("test", JSON.stringify(newThing));
   }
@@ -87,6 +81,16 @@ function App(props) {
   //   setTasks(newThing);
   //   localStorage.setItem("test", JSON.stringify(newThing));
   // }
+
+  function finishAll (){
+    let selectAll = [... tasks]
+    console.log(selectAll)
+    for (let i = 0; i < selectAll.length; i++) {
+      selectAll[i].complete = true
+    }
+    setTasks(selectAll)
+    localStorage.setItem("test", JSON.stringify(selectAll));
+  }
 
 
   function allTasks() {
@@ -109,7 +113,7 @@ function App(props) {
           <div>The amount of Tasks completed is {bahh}</div>
           <div>The amount of Tasks to do is {sheep} </div>
           <ButtonMaker
-            text={"All"}
+            text={"Remember"}
             handleToggle={allTasks}
             className={"btn bg-primary"}
           />
@@ -127,6 +131,11 @@ function App(props) {
           <ButtonMaker
             text={"Remove Completed"}
             handleToggle={boggle}
+            className={"btn bg-danger"}
+          />
+                    <ButtonMaker
+            text={"Select All"}
+            handleToggle={finishAll}
             className={"btn bg-danger"}
           />
         </div>
