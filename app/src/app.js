@@ -9,7 +9,11 @@ import ButtonMaker from "./componets/ButtonMaker";
 import "./app.css";
 
 function App(props) {
+  
   const [tasks, setTasks] = useState(data);
+  // let boo = localStorage.getItem("test");
+  // useState = boo !== null ? JSON.parse(boo) : console.log("broke");
+
 
   function addTask(task) {
     const newTasks = [
@@ -72,6 +76,19 @@ function App(props) {
     localStorage.setItem("test", JSON.stringify(newThing));
   }
 
+  // function deletion() {
+  //   let del = localStorage.getItem("test");
+  //   const changeDel = del !== null ? JSON.parse(del) : console.log("broke");
+  //   console.log("Before the for loop", changeDel);
+  //   changeDel.archiveNum = 57
+  //   let newThing = changeDel.filter((task) => task.archive == false);
+  //   console.log(changeDel);
+  //   console.log(newThing);
+  //   setTasks(newThing);
+  //   localStorage.setItem("test", JSON.stringify(newThing));
+  // }
+
+
   function allTasks() {
     let recall = localStorage.getItem("test");
     const re = recall !== null ? JSON.parse(recall) : console.log("broke");
@@ -83,12 +100,11 @@ function App(props) {
     <>
       <div className="container">
         <div>
-          <h1 className="badge bg-primary">
-            checking if bootstap and react are working
-          </h1>
+
           <HeaderTop />
           <NewTaskInput addTask={addTask} />
           {<List tasks={tasks} handleToggle={handleToggle} />}
+          {/* deletion={deletion} */}
           <br></br>
           <div>The amount of Tasks completed is {bahh}</div>
           <div>The amount of Tasks to do is {sheep} </div>

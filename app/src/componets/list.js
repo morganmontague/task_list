@@ -2,7 +2,7 @@ import Entry from "./entry";
 import TaskMaker from "./taskMaker";
 
  
-const List = ({tasks, handleToggle}) => {
+const List = ({tasks, handleToggle, deletion}) => {
    return (
    <div >
     {tasks.map((task, index) => (
@@ -10,7 +10,9 @@ const List = ({tasks, handleToggle}) => {
     handleToggle={handleToggle}
     task={task}
     index={index}
-    key={index}
+    key={task.id}
+    deletion={deletion}
+    
         />   
     )
     )

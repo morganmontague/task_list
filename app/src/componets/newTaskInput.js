@@ -24,7 +24,7 @@ import Header from './header';
                     placeholder="Insert Tasks Here..."
                     onChange={e => setValue(e.target.value)}
                     />
-            <button onClick={handleSubmit}>Meh</button>
+            <button onClick={handleSubmit} id={'colorBlue'}>Meh</button>
             </>
 
                     
